@@ -11,13 +11,14 @@ var roundsTotal = 0;
 
 
 const game = () => {
-	for(var i = 0; i < 5; i++) {  // se juegan 5 rounds
+	for(var i = 0; i < 5; i++) {  // se juegan 3 rounds
 		roundsTotal += 1;
 		plays(playerSelection, computerSelection);
-		console.log('Round: ', roundsTotal);
-		console.log('Tu puntaje:', puntajePlayer)
-		console.log('PC puntaje: ', puntajeAi)
-		console.log('---------------------------------');
+		console.log('------------');
+		console.log('Vos:', puntajePlayer)
+		console.log('PC: ', puntajeAi)
+		console.log('Empates: ', empate)
+		console.log('**********************************');
 	}
 }
 
@@ -28,25 +29,25 @@ const computerPlay = () => {
 
 
 const plays = (playerSelection, computerSelection) => {
-	for(var i = 0; i < 3; i++) {
-		playerSelection = prompt('Elegi: Rock, Paper o Scissors').toLowerCase(); // TODO: no permitir que se ingrese cualquier cosa-.
-		console.log('Tu eleccion: ', playerSelection);
+	var i = 0;
+	console.log('Round: ', roundsTotal);
+	console.log('------------');
+	playerSelection = prompt('Elegi: Rock, Paper o Scissors').toLowerCase(); // TODO: no permitir que se ingrese cualquier cosa-.
+	console.log('Tu eleccion: ', playerSelection);
 
-		var computerSelection = computerPlay();
-		console.log('PC eleccion: ', computerSelection);
+	var computerSelection = computerPlay();
+	console.log('PC eleccion: ', computerSelection);
 
-		if (playerSelection == posibilidades[i] || playerSelection == posibilidades[i + 1] || playerSelection == posibilidades[i + 2]) {
-			if (computerSelection == posibilidades[playerSelection.indexOf() + 1]) {  // chequea que la eleccion de la compu sea el proximo en posibilidades[]
-				return puntajePlayer += 1;
-			} else if(computerSelection == posibilidades[playerSelection.indexOf() + 2]) {  // chequea que la eleccion de la compu sea el [i + 2] en posibilidades[]
-				return puntajeAi =+ 1;
-			} else {
-			return empate += 1;
-			}
+	if (playerSelection == posibilidades[i] || playerSelection == posibilidades[i + 1] || playerSelection == posibilidades[i + 2]) {
+		if (computerSelection == posibilidades[posibilidades.indexOf(playerSelection) + 1]) {  // chequea que la eleccion de la compu sea el proximo en posibilidades[]
+			return puntajePlayer += 1;
+		} else if(computerSelection == posibilidades[posibilidades.indexOf(playerSelection) + 2]) {  // chequea que la eleccion de la compu sea el [i + 2] en posibilidades[]
+			return puntajeAi += 1;
+		} else {
+		return empate += 1;
 		}
 	}
 }
-
 
 
 game();
